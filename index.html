@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Chatbot</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="index.js">
+</head>
+<body>
+    <div id="container">
+        <div id="page1">
+            <h2>Medical Chatbot</h2>
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+            <br>
+            <label for="age">Age:</label>
+            <input type="number" id="age" required>
+            <br>
+            <label for="gender">Gender:</label>
+            <select id="gender" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+            <br>
+            <button onclick="nextPage()">Next</button>
+        </div>
+
+        <div id="page2" class="hidden">
+            <label for="issues">Describe your medical issues:</label>
+            <textarea id="issues" required></textarea>
+            <br>
+            <button onclick="getSolution()">Get Solution</button>
+        </div>
+
+        <div id="result" class="hidden">
+            <h3>Here is your solution:</h3>
+            <p id="solution"></p>
+        </div>
+    </div>
+
+    <script>
+        function nextPage() {
+            document.getElementById('page1').classList.add('hidden');
+            document.getElementById('page2').classList.remove('hidden');
+        }
+
+        function getSolution() {
+            const name = document.getElementById('name').value;
+            const age = document.getElementById('age').value;
+            const gender = document.getElementById('gender').value;
+            const issues = document.getElementById('issues').value;
+
+            // You can replace this with a more sophisticated logic to generate a solution
+            const solution = `Dear ${name}, based on your input, it seems like you may need to consult with a healthcare professional regarding your ${issues}.`;
+
+            document.getElementById('page2').classList.add('hidden');
+            document.getElementById('result').classList.remove('hidden');
+            document.getElementById('solution').innerText = solution;
+        }
+    </script>
+</body>
+</html>
